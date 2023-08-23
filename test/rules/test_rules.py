@@ -1,13 +1,23 @@
 import pytest
+import roslib
 import rospy
-import time
 
-from std_msgs.msg import String
+from metacontrol_knowrob.prolog_query import PrologQuery
+# import time
+
+# from std_msgs.msg import String
 
 
 @pytest.fixture
 def node():
-    rospy.init_node('test_rules', anonymous=True)
+    roslib.load_manifest('rosprolog')
+    rospy.init_node('test_rules')
+    pq = PrologQuery()  # create a prolog query class instance
+    #
+    # # load example.owl in the knowrob database to access its content
+    # query = pq.prolog_query(
+    #     "load_owl('package://metacontrol_knowrob/test/owl/test.owl',\
+    #      [namespace(test, 'http://www.metacontrol.org/test#')]).")
 
 
 # @pytest.fixture
