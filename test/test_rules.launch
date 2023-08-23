@@ -1,0 +1,4 @@
+<launch>
+  <param name="test_module" value="$(find metacontrol_knowrob)/test/rules"/>
+  <test test-name="test_rules" pkg="ros_pytest" type="ros_pytest_runner" />
+</launch>
