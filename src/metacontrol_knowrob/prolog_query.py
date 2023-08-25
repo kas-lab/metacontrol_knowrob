@@ -51,8 +51,10 @@ class PrologQuery:
         if len(solution) > 0:
             formatted_solution = dict()
             for k, v in solution.items():
-                name_value = re.split('#', v)
-                if include_ns is False:
-                    name_value = name_value[-1]
-                formatted_solution[k] = name_value
+                if type(v) is str:
+                    f_value = re.split('#', v)
+                    if include_ns is False:
+                        formatted_solution[k] = f_value[-1]
+                else:
+                    formatted_solution[k] = v
         return formatted_solution
