@@ -21,32 +21,46 @@ def prolog_query():
     return pq
 
 
-def test_objective_status(node, prolog_query):
-    results = prolog_query.query(
-        "objective_status(O, S).", print_solutions=True)
-    expected_results = [
-        ('o_fake_infer_in_error_nfr', 'IN_ERROR_NFR'),
-        ('o_fake_infer_component_in_error', 'IN_ERROR_COMPONENT'),
-    ]
-    assertion = False
+def evaluate_query_results(results, expected_results):
     for result in results:
         for er in expected_results:
             if er[0] in result.values() and er[1] in result.values():
                 expected_results[:] = [
                     x for x in expected_results if x is not er]
         if len(expected_results) == 0:
-            assertion = True
-            break
+            return True
     print('Expected results not found: ', expected_results)
-    assert assertion
+    return False
 
 
-def test_fg_in_error_component(node, prolog_query):
-    results = prolog_query.query("fg_status(FG, S).")
-    assertion = False
-    for result in results:
-        if result['FG'] == 'fg_component_in_error' \
-           and result['S'] == 'IN_ERROR_COMPONENT':
-            assertion = True
-            break
-    assert assertion
+def test_objective_status(node, prolog_query):
+    results = prolog_query.query(
+        "objective_status(O, S).", print_solutions=True)
+    expected_results = [
+        ('o_fake_infer_in_error_nfr', 'IN_ERROR_NFR'),
+        ('o_fake_infer_component_in_error', 'IN_ERROR_COMPONENT'),
+        ('o_fake_critical', 'IN_ERROR_FR'),
+        ('o_fake_less_operator_error', 'IN_ERROR_NFR'),
+    ]
+    assert evaluate_query_results(results, expected_results)
+
+
+def test_fg_status(node, prolog_query):
+    results = prolog_query.query("fg_status(FG, S).", print_solutions=True)
+    expected_results = [
+        ('fg_fake_in_error_nfr', 'IN_ERROR_NFR'),
+        ('fg_component_in_error', 'IN_ERROR_COMPONENT'),
+        ('fg_fake_critical', 'IN_ERROR_FR'),
+        ('fg_less_operator_error', 'IN_ERROR_NFR'),
+    ]
+    assert evaluate_query_results(results, expected_results)
+
+
+def test_fd_realisability(node, prolog_query):
+    results = prolog_query.query(
+        "fd_realisability(FD, S).", print_solutions=True)
+    expected_results = [
+        ('fd_fake_component', False),
+        ('fd_fake1', True),
+    ]
+    assert evaluate_query_results(results, expected_results)
