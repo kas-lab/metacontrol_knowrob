@@ -1,4 +1,6 @@
+# OWL
 *catalog-v*.xml
+*catalog-backup-*.xml
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
