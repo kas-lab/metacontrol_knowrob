@@ -43,9 +43,6 @@
 
     <owl:NamedIndividual rdf:about="http://www.metacontrol.org/metacontrol_test#c_mock_component">
         <rdf:type rdf:resource="http://metacontrol.org/tomasys#Component"/>
-        <mros:requiredBy rdf:resource="http://www.metacontrol.org/metacontrol_test#fd_mock1"/>
-        <mros:requiredBy rdf:resource="http://www.metacontrol.org/metacontrol_test#fd_mock2"/>
-        <mros:requiredBy rdf:resource="http://www.metacontrol.org/metacontrol_test#fd_mock3"/>
     </owl:NamedIndividual>
     
 
@@ -53,14 +50,6 @@
     <!-- http://www.metacontrol.org/metacontrol_test#f_fake -->
 
     <owl:NamedIndividual rdf:about="http://www.metacontrol.org/metacontrol_test#f_fake">
-        <rdf:type rdf:resource="http://metacontrol.org/tomasys#Function"/>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://www.metacontrol.org/metacontrol_test#f_mock -->
-
-    <owl:NamedIndividual rdf:about="http://www.metacontrol.org/metacontrol_test#f_mock">
         <rdf:type rdf:resource="http://metacontrol.org/tomasys#Function"/>
     </owl:NamedIndividual>
     
@@ -77,17 +66,6 @@
     
 
 
-    <!-- http://www.metacontrol.org/metacontrol_test#fd_fake2 -->
-
-    <owl:NamedIndividual rdf:about="http://www.metacontrol.org/metacontrol_test#fd_fake2">
-        <rdf:type rdf:resource="http://metacontrol.org/tomasys#FunctionDesign"/>
-        <tomasys:hasQAestimation rdf:resource="http://www.metacontrol.org/metacontrol_test#qa_mockiness_medium"/>
-        <tomasys:hasQAestimation rdf:resource="http://www.metacontrol.org/metacontrol_test#qa_performance_medium"/>
-        <tomasys:solvesF rdf:resource="http://www.metacontrol.org/metacontrol_test#f_fake"/>
-    </owl:NamedIndividual>
-    
-
-
     <!-- http://www.metacontrol.org/metacontrol_test#fd_fake_component -->
 
     <owl:NamedIndividual rdf:about="http://www.metacontrol.org/metacontrol_test#fd_fake_component">
@@ -97,35 +75,22 @@
     
 
 
-    <!-- http://www.metacontrol.org/metacontrol_test#fd_mock1 -->
+    <!-- http://www.metacontrol.org/metacontrol_test#fd_fake_critical -->
 
-    <owl:NamedIndividual rdf:about="http://www.metacontrol.org/metacontrol_test#fd_mock1">
+    <owl:NamedIndividual rdf:about="http://www.metacontrol.org/metacontrol_test#fd_fake_critical">
         <rdf:type rdf:resource="http://metacontrol.org/tomasys#FunctionDesign"/>
-        <tomasys:hasQAestimation rdf:resource="http://www.metacontrol.org/metacontrol_test#qa_mockiness_low"/>
-        <tomasys:hasQAestimation rdf:resource="http://www.metacontrol.org/metacontrol_test#qa_performance_low"/>
-        <tomasys:solvesF rdf:resource="http://www.metacontrol.org/metacontrol_test#f_mock"/>
+        <tomasys:hasQAestimation rdf:resource="http://www.metacontrol.org/metacontrol_test#qa_critical_requirement"/>
+        <tomasys:solvesF rdf:resource="http://www.metacontrol.org/metacontrol_test#f_fake"/>
     </owl:NamedIndividual>
     
 
 
-    <!-- http://www.metacontrol.org/metacontrol_test#fd_mock2 -->
+    <!-- http://www.metacontrol.org/metacontrol_test#fd_fake_less_operator -->
 
-    <owl:NamedIndividual rdf:about="http://www.metacontrol.org/metacontrol_test#fd_mock2">
+    <owl:NamedIndividual rdf:about="http://www.metacontrol.org/metacontrol_test#fd_fake_less_operator">
         <rdf:type rdf:resource="http://metacontrol.org/tomasys#FunctionDesign"/>
-        <tomasys:hasQAestimation rdf:resource="http://www.metacontrol.org/metacontrol_test#qa_mockiness_medium"/>
-        <tomasys:hasQAestimation rdf:resource="http://www.metacontrol.org/metacontrol_test#qa_performance_medium"/>
-        <tomasys:solvesF rdf:resource="http://www.metacontrol.org/metacontrol_test#f_mock"/>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://www.metacontrol.org/metacontrol_test#fd_mock3 -->
-
-    <owl:NamedIndividual rdf:about="http://www.metacontrol.org/metacontrol_test#fd_mock3">
-        <rdf:type rdf:resource="http://metacontrol.org/tomasys#FunctionDesign"/>
-        <tomasys:hasQAestimation rdf:resource="http://www.metacontrol.org/metacontrol_test#qa_mockiness_high"/>
-        <tomasys:hasQAestimation rdf:resource="http://www.metacontrol.org/metacontrol_test#qa_performance_high"/>
-        <tomasys:solvesF rdf:resource="http://www.metacontrol.org/metacontrol_test#f_mock"/>
+        <tomasys:hasQAestimation rdf:resource="http://www.metacontrol.org/metacontrol_test#qa_less_operator_requirement"/>
+        <tomasys:solvesF rdf:resource="http://www.metacontrol.org/metacontrol_test#f_fake"/>
     </owl:NamedIndividual>
     
 
@@ -136,6 +101,17 @@
         <rdf:type rdf:resource="http://metacontrol.org/tomasys#FunctionGrounding"/>
         <tomasys:solvesO rdf:resource="http://www.metacontrol.org/metacontrol_test#o_fake_infer_component_in_error"/>
         <tomasys:typeFD rdf:resource="http://www.metacontrol.org/metacontrol_test#fd_fake_component"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.metacontrol.org/metacontrol_test#fg_fake_critical -->
+
+    <owl:NamedIndividual rdf:about="http://www.metacontrol.org/metacontrol_test#fg_fake_critical">
+        <rdf:type rdf:resource="http://metacontrol.org/tomasys#FunctionGrounding"/>
+        <tomasys:hasQAvalue rdf:resource="http://www.metacontrol.org/metacontrol_test#qa_critical_measurement"/>
+        <tomasys:solvesO rdf:resource="http://www.metacontrol.org/metacontrol_test#o_fake_critical"/>
+        <tomasys:typeFD rdf:resource="http://www.metacontrol.org/metacontrol_test#fd_fake_critical"/>
     </owl:NamedIndividual>
     
 
@@ -151,10 +127,42 @@
     
 
 
+    <!-- http://www.metacontrol.org/metacontrol_test#fg_less_operator_error -->
+
+    <owl:NamedIndividual rdf:about="http://www.metacontrol.org/metacontrol_test#fg_less_operator_error">
+        <rdf:type rdf:resource="http://metacontrol.org/tomasys#FunctionGrounding"/>
+        <tomasys:hasQAvalue rdf:resource="http://www.metacontrol.org/metacontrol_test#qa_less_operator_measurement_error"/>
+        <tomasys:solvesO rdf:resource="http://www.metacontrol.org/metacontrol_test#o_fake_less_operator_error"/>
+        <tomasys:typeFD rdf:resource="http://www.metacontrol.org/metacontrol_test#fd_fake_less_operator"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.metacontrol.org/metacontrol_test#fg_less_operator_ok -->
+
+    <owl:NamedIndividual rdf:about="http://www.metacontrol.org/metacontrol_test#fg_less_operator_ok">
+        <rdf:type rdf:resource="http://metacontrol.org/tomasys#FunctionGrounding"/>
+        <tomasys:hasQAvalue rdf:resource="http://www.metacontrol.org/metacontrol_test#qa_less_operator_measurement_ok"/>
+        <tomasys:solvesO rdf:resource="http://www.metacontrol.org/metacontrol_test#o_fake_less_operator_ok"/>
+        <tomasys:typeFD rdf:resource="http://www.metacontrol.org/metacontrol_test#fd_fake_less_operator"/>
+    </owl:NamedIndividual>
+    
+
+
     <!-- http://www.metacontrol.org/metacontrol_test#mockiness -->
 
     <owl:NamedIndividual rdf:about="http://www.metacontrol.org/metacontrol_test#mockiness">
         <rdf:type rdf:resource="http://metacontrol.org/tomasys#QualityAttributeType"/>
+        <tomasys:qa_comparison_operator>&lt;</tomasys:qa_comparison_operator>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.metacontrol.org/metacontrol_test#o_fake_critical -->
+
+    <owl:NamedIndividual rdf:about="http://www.metacontrol.org/metacontrol_test#o_fake_critical">
+        <rdf:type rdf:resource="http://metacontrol.org/tomasys#Objective"/>
+        <tomasys:typeF rdf:resource="http://www.metacontrol.org/metacontrol_test#f_fake"/>
     </owl:NamedIndividual>
     
 
@@ -173,6 +181,93 @@
     <owl:NamedIndividual rdf:about="http://www.metacontrol.org/metacontrol_test#o_fake_infer_in_error_nfr">
         <rdf:type rdf:resource="http://metacontrol.org/tomasys#Objective"/>
         <tomasys:typeF rdf:resource="http://www.metacontrol.org/metacontrol_test#f_fake"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.metacontrol.org/metacontrol_test#o_fake_less_operator_error -->
+
+    <owl:NamedIndividual rdf:about="http://www.metacontrol.org/metacontrol_test#o_fake_less_operator_error">
+        <rdf:type rdf:resource="http://metacontrol.org/tomasys#Objective"/>
+        <tomasys:typeF rdf:resource="http://www.metacontrol.org/metacontrol_test#f_fake"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.metacontrol.org/metacontrol_test#o_fake_less_operator_ok -->
+
+    <owl:NamedIndividual rdf:about="http://www.metacontrol.org/metacontrol_test#o_fake_less_operator_ok">
+        <rdf:type rdf:resource="http://metacontrol.org/tomasys#Objective"/>
+        <tomasys:typeF rdf:resource="http://www.metacontrol.org/metacontrol_test#f_fake"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.metacontrol.org/metacontrol_test#qa_critical -->
+
+    <owl:NamedIndividual rdf:about="http://www.metacontrol.org/metacontrol_test#qa_critical">
+        <rdf:type rdf:resource="http://metacontrol.org/tomasys#QualityAttributeType"/>
+        <tomasys:qa_comparison_operator>&gt;</tomasys:qa_comparison_operator>
+        <tomasys:qa_critical rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">true</tomasys:qa_critical>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.metacontrol.org/metacontrol_test#qa_critical_measurement -->
+
+    <owl:NamedIndividual rdf:about="http://www.metacontrol.org/metacontrol_test#qa_critical_measurement">
+        <rdf:type rdf:resource="http://metacontrol.org/tomasys#QAvalue"/>
+        <tomasys:isQAtype rdf:resource="http://www.metacontrol.org/metacontrol_test#qa_critical"/>
+        <tomasys:hasValue rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">0.99</tomasys:hasValue>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.metacontrol.org/metacontrol_test#qa_critical_requirement -->
+
+    <owl:NamedIndividual rdf:about="http://www.metacontrol.org/metacontrol_test#qa_critical_requirement">
+        <rdf:type rdf:resource="http://metacontrol.org/tomasys#QAvalue"/>
+        <tomasys:isQAtype rdf:resource="http://www.metacontrol.org/metacontrol_test#qa_critical"/>
+        <tomasys:hasValue rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">0.7</tomasys:hasValue>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.metacontrol.org/metacontrol_test#qa_less_operator -->
+
+    <owl:NamedIndividual rdf:about="http://www.metacontrol.org/metacontrol_test#qa_less_operator">
+        <rdf:type rdf:resource="http://metacontrol.org/tomasys#QualityAttributeType"/>
+        <tomasys:qa_comparison_operator>&lt;</tomasys:qa_comparison_operator>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.metacontrol.org/metacontrol_test#qa_less_operator_measurement_error -->
+
+    <owl:NamedIndividual rdf:about="http://www.metacontrol.org/metacontrol_test#qa_less_operator_measurement_error">
+        <rdf:type rdf:resource="http://metacontrol.org/tomasys#QAvalue"/>
+        <tomasys:isQAtype rdf:resource="http://www.metacontrol.org/metacontrol_test#qa_less_operator"/>
+        <tomasys:hasValue rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">0.3</tomasys:hasValue>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.metacontrol.org/metacontrol_test#qa_less_operator_measurement_ok -->
+
+    <owl:NamedIndividual rdf:about="http://www.metacontrol.org/metacontrol_test#qa_less_operator_measurement_ok">
+        <rdf:type rdf:resource="http://metacontrol.org/tomasys#QAvalue"/>
+        <tomasys:isQAtype rdf:resource="http://www.metacontrol.org/metacontrol_test#qa_less_operator"/>
+        <tomasys:hasValue rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">0.99</tomasys:hasValue>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.metacontrol.org/metacontrol_test#qa_less_operator_requirement -->
+
+    <owl:NamedIndividual rdf:about="http://www.metacontrol.org/metacontrol_test#qa_less_operator_requirement">
+        <rdf:type rdf:resource="http://metacontrol.org/tomasys#QAvalue"/>
+        <tomasys:isQAtype rdf:resource="http://www.metacontrol.org/metacontrol_test#qa_less_operator"/>
+        <tomasys:hasValue rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">0.7</tomasys:hasValue>
     </owl:NamedIndividual>
     
 
