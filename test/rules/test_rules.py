@@ -1,66 +1,52 @@
+#!/usr/bin/env python
 import pytest
-import roslib
 import rospy
 
 from metacontrol_knowrob.prolog_query import PrologQuery
-# import time
-
-# from std_msgs.msg import String
 
 
 @pytest.fixture
 def node():
-    roslib.load_manifest('rosprolog')
-    rospy.init_node('test_rules')
-    pq = PrologQuery()  # create a prolog query class instance
-    #
-    # # load example.owl in the knowrob database to access its content
-    # query = pq.prolog_query(
-    #     "load_owl('package://metacontrol_knowrob/test/owl/test.owl',\
-    #      [namespace(test, 'http://www.metacontrol.org/test#')]).")
+    rospy.init_node('test_rules', anonymous=True)
 
 
-# @pytest.fixture
-# def waiter():
-#     class Waiter(object):
-#         def __init__(self):
-#             self.received = []
-#             self.condition = lambda x: False
-#
-#         @property
-#         def success(self):
-#             return True in self.received
-#
-#         def callback(self, data):
-#             self.received.append(self.condition(data))
-#
-#         def wait(self, timeout):
-#             timeout_t = time.time() + timeout
-#             while not rospy.is_shutdown() and not self.success and time.time() < timeout_t:
-#                 time.sleep(0.1)
-#
-#         def reset(self):
-#             self.received = []
-#
-#     return Waiter()
-#
-#
-# def test_listener_receives_something(node, waiter):
-#     waiter.condition = lambda data: True  # any message is good
-#
-#     rospy.Subscriber('chatter', String, waiter.callback)
-#     waiter.wait(10.0)
-#
-#     assert waiter.success
-#
-#
-# def test_listener_receives_hello_mesage(node, waiter):
-#     waiter.condition = lambda data: 'hello world' in data.data
-#
-#     rospy.Subscriber('chatter', String, waiter.callback)
-#     waiter.wait(10.0)
-#
-#     assert waiter.success
+@pytest.fixture
+def prolog_query():
+    pq = PrologQuery()
 
-def test_rules(node):
-    assert True
+    query = pq.query(
+        "load_owl('package://metacontrol_knowrob/test/owl/test.owl',\
+         [namespace(metacontrol_test, \
+         'http://www.metacontrol.org/metacontrol_test#')]).")
+    return pq
+
+
+def test_objective_status(node, prolog_query):
+    results = prolog_query.query(
+        "objective_status(O, S).", print_solutions=True)
+    expected_results = [
+        ('o_fake_infer_in_error_nfr', 'IN_ERROR_NFR'),
+        ('o_fake_infer_component_in_error', 'IN_ERROR_COMPONENT'),
+    ]
+    assertion = False
+    for result in results:
+        for er in expected_results:
+            if er[0] in result.values() and er[1] in result.values():
+                expected_results[:] = [
+                    x for x in expected_results if x is not er]
+        if len(expected_results) == 0:
+            assertion = True
+            break
+    print('Expected results not found: ', expected_results)
+    assert assertion
+
+
+def test_fg_in_error_component(node, prolog_query):
+    results = prolog_query.query("fg_status(FG, S).")
+    assertion = False
+    for result in results:
+        if result['FG'] == 'fg_component_in_error' \
+           and result['S'] == 'IN_ERROR_COMPONENT':
+            assertion = True
+            break
+    assert assertion
