@@ -41,10 +41,12 @@ def test_objective_status(node, prolog_query):
         ('o_fake_infer_component_in_error', 'IN_ERROR_COMPONENT'),
         ('o_fake_critical', 'IN_ERROR_FR'),
         ('o_fake_less_operator_error', 'IN_ERROR_NFR'),
+        ('o_fake_less_operator_ok', 'OK'),
     ]
     assert evaluate_query_results(results, expected_results)
 
 
+# TODO: check if there are extra wrong values, e.g., ('fg_less_operator_error', 'OK')
 def test_fg_status(node, prolog_query):
     results = prolog_query.query("fg_status(FG, S).", print_solutions=True)
     expected_results = [
@@ -52,6 +54,7 @@ def test_fg_status(node, prolog_query):
         ('fg_component_in_error', 'IN_ERROR_COMPONENT'),
         ('fg_fake_critical', 'IN_ERROR_FR'),
         ('fg_less_operator_error', 'IN_ERROR_NFR'),
+        ('fg_less_operator_ok', 'OK'),
     ]
     assert evaluate_query_results(results, expected_results)
 
@@ -62,5 +65,7 @@ def test_fd_realisability(node, prolog_query):
     expected_results = [
         ('fd_fake_component', False),
         ('fd_fake1', True),
+        ('fd_fake_critical', True),
+        ('fd_fake_less_operator', True),
     ]
     assert evaluate_query_results(results, expected_results)
