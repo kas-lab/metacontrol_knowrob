@@ -61,6 +61,6 @@ class PrologQuery:
                     f_value = re.split('#', v)
                     if include_ns is False:
                         formatted_solution[k] = f_value[-1]
-                else:
-                    formatted_solution[k] = v
+                    else:
+                        formatted_solution[k] = v
         return formatted_solution
