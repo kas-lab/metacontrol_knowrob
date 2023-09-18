@@ -3,6 +3,7 @@
       component/1,
       fd/1,
       fg/1,
+      function/1,
       objective/1,
       qa_type/1,
       qa_value/1,
@@ -18,11 +19,13 @@
       qa_critical/2,
       c_status/2,
       fg_status/2,
-      objective_status/2
+      objective_status/2,
+      objective_in_error/1
     ]).
 
 % Get instances of TOMASys Classes
 component(C) :- instance_of(C, tomasys:'Component').
+function(F) :- instance_of(F, tomasys:'Function').
 fd(FD) :- instance_of(FD, tomasys:'FunctionDesign').
 fg(FG) :- instance_of(FG, tomasys:'FunctionGrounding').
 objective(O) :- instance_of(O, tomasys:'Objective').
@@ -61,10 +64,13 @@ objective_status(O, S) :- objective(O), triple(O, tomasys:'o_status', S).
 objective_status(O, S) :-
   objective(O), \+triple(O, tomasys:'o_status', S),
   fg_solves_obj(FG, O), fg_status(FG, S).
+objective_status(O, 'UNGROUNDED') :-
+  objective(O), \+triple(O, tomasys:'o_status', _), \+fg_solves_obj(_, O).
 % TODO: infer objective UNGROUNDED
 % TODO: infer objective OK/IN_PROGRESS
 % TODO: infer objective status when objective has a required QA
 
+objective_in_error(O) :- objective_status(O, S), S \= 'OK'.
 
 %% Helper predicates for FG status
 % Compare the measured QA with the estimated QA given the comparison_operator
