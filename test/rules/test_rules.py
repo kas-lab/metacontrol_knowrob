@@ -33,6 +33,20 @@ def evaluate_query_results(results, expected_results):
     return False
 
 
+def test_objective_in_error(node, prolog_query):
+    results = prolog_query.query(
+        "objective_status(O, S).", print_solutions=True)
+    expected_results = [
+        ('o_fake_infer_in_error_nfr', 'IN_ERROR_NFR'),
+        ('o_fake_infer_component_in_error', 'IN_ERROR_COMPONENT'),
+        ('o_fake_critical', 'IN_ERROR_FR'),
+        ('o_fake_less_operator_error', 'IN_ERROR_NFR'),
+        # ('o_fake_less_operator_ok', 'OK'),
+        ('o_ungrounded', 'UNGROUNDED'),
+    ]
+    assert evaluate_query_results(results, expected_results)
+
+
 def test_objective_status(node, prolog_query):
     results = prolog_query.query(
         "objective_status(O, S).", print_solutions=True)
@@ -42,6 +56,7 @@ def test_objective_status(node, prolog_query):
         ('o_fake_critical', 'IN_ERROR_FR'),
         ('o_fake_less_operator_error', 'IN_ERROR_NFR'),
         ('o_fake_less_operator_ok', 'OK'),
+        ('o_ungrounded', 'UNGROUNDED'),
     ]
     assert evaluate_query_results(results, expected_results)
 

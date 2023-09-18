@@ -203,6 +203,15 @@
     
 
 
+    <!-- http://www.metacontrol.org/metacontrol_test#o_ungrounded -->
+
+    <owl:NamedIndividual rdf:about="http://www.metacontrol.org/metacontrol_test#o_ungrounded">
+        <rdf:type rdf:resource="http://metacontrol.org/tomasys#Objective"/>
+        <tomasys:typeF rdf:resource="http://www.metacontrol.org/metacontrol_test#f_fake"/>
+    </owl:NamedIndividual>
+    
+
+
     <!-- http://www.metacontrol.org/metacontrol_test#qa_critical -->
 
     <owl:NamedIndividual rdf:about="http://www.metacontrol.org/metacontrol_test#qa_critical">
