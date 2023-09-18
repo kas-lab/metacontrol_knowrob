@@ -4,3 +4,4 @@
 :- register_ros_package(metacontrol_knowrob).
 
 :- use_module(library('analyze')).
+:- use_module(library('plan')).
