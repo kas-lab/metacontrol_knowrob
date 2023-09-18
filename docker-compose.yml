@@ -2,7 +2,6 @@ services:
   mongo:
     image: mongo:4.4.3-bionic
     container_name: mongo_container
-    restart: always
     networks:
       - knowrob_network
     logging:
