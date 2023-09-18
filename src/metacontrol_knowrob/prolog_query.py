@@ -12,6 +12,12 @@ class PrologQuery:
         self.prolog = Prolog()
         self.predicates = []  # initialize list attribute
 
+    def project_query(self, q, print_solutions=False, include_ns=False):
+        return self.query("kb_project({})".format(q))
+
+    def unproject_query(self, q, print_solutions=False, include_ns=False):
+        return self.query("kb_unproject({})".format(q))
+
     def query(self, q, print_solutions=False, include_ns=False):
         """ Perform prolog query.
         Takes as argument the query string and returns a list of dictionaries.
