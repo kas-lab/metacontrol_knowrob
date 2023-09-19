@@ -8,8 +8,11 @@ fd_solves_f(FD, F) :- fd(FD), triple(FD, tomasys:'solvesF', F), function(F).
 
 fd_estimated_performance(F, FD, EP) :-
   fd_solves_f(FD, F),
-  fd(FD), triple(FD, tomasys:'hasQAestimation', EQA),
-  triple(EQA, tomasys:'isQAtype', mros:'performance'), qa_has_value(EQA, EP).
+  fd(FD),
+  fd_realisability(FD, true),
+  triple(FD, tomasys:'hasQAestimation', EQA),
+  triple(EQA, tomasys:'isQAtype', mros:'performance'),
+  qa_has_value(EQA, EP).
 
 get_best_fd(O, BFD) :-
   o_type_f(O, F),
