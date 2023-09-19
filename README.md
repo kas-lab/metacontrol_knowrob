@@ -1,4 +1,5 @@
 [![Docker](https://github.com/kas-lab/metacontrol_knowrob/actions/workflows/docker-publish.yml/badge.svg)](https://github.com/kas-lab/metacontrol_knowrob/actions/workflows/docker-publish.yml)
+[![Tests](https://github.com/kas-lab/metacontrol_knowrob/actions/workflows/tests.yml/badge.svg)](https://github.com/kas-lab/metacontrol_knowrob/actions/workflows/tests.yml)
 # metacontrol_knowrob
 Metacontrol implementation with the KnowRob framework
 
