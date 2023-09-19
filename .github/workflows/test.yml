@@ -19,5 +19,4 @@ jobs:
       - uses: adambirds/docker-compose-action@v1.3.0
         with:
           compose-file: "./test/docker-compose.yml"
-          test-container: test_container
-          test-command: python -m pytest src/metacontrol_knowrob/test/rules/test_rules.py
+          test-container: metacontrol_test_container
