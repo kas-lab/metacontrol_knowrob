@@ -12,11 +12,12 @@ on:
 
 jobs:
   build:
+    runs-on: ubuntu-latest
     steps:
     # need checkout before using docker-compose-action
-    - uses: actions/checkout@v3
-    - uses: adambirds/docker-compose-action@v1.3.0
-      with:
-        compose-file: "./test/docker-compose.yml"
-        test-container: test_container
-        test-command: python -m pytest src/metacontrol_knowrob/test/rules/test_rules.py
+      - uses: actions/checkout@v3
+      - uses: adambirds/docker-compose-action@v1.3.0
+        with:
+          compose-file: "./test/docker-compose.yml"
+          test-container: test_container
+          test-command: python -m pytest src/metacontrol_knowrob/test/rules/test_rules.py
