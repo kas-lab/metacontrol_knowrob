@@ -3,5 +3,6 @@
 :- load_owl('https://raw.githubusercontent.com/meta-control/mros_ontology/main/owl/mros.owl', [namespace(mros, 'http://ros/mros#')]).
 :- register_ros_package(metacontrol_knowrob).
 
+:- use_module(library('tomasys_query')).
 :- use_module(library('analyze')).
 :- use_module(library('plan')).
