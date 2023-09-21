@@ -72,6 +72,8 @@ def add_objective(pq):
     add_typef = pq.project_query(
         "triple(suave:'o_search', tomasys:'typeF', \
         suave:'f_generate_search_path')")
+    add_always_improve = pq.project_query(
+        "triple(suave:'o_search', tomasys:'o_always_improve', 'true')")
     return add_obj and add_typef
 
 
@@ -79,25 +81,32 @@ def get_objectives_in_error(pq):
     obj_in_error = pq.query("objective_in_error(O).", include_ns=True)
     if obj_in_error is False:
         return []
-    return obj_in_error
+    return [o['O'] for o in obj_in_error]
 
 
-def get_objectives(pq):
-    obj_in_error = pq.query("objective(O).", include_ns=True)
-    if obj_in_error is False:
+def get_objectives_always_improve(pq):
+    obj_improve = pq.query("objective_always_improve(O).", include_ns=True)
+    if obj_improve is False:
         return []
-    return obj_in_error
+    return [o['O'] for o in obj_improve]
 
 
-def select_fds(pq, obj_in_error):
+def get_adaptable_objectives(pq):
+    obj_adaptable = get_objectives_in_error(pq)
+    obj_improve = get_objectives_always_improve(pq)
+    obj_adaptable.extend(o for o in obj_improve if o not in obj_adaptable)
+    return obj_adaptable
+
+
+def select_fds(pq, obj_adaptable):
     selected_fds = list()
-    for objective in obj_in_error:
+    for objective in obj_adaptable:
         fd = pq.query(
-            "get_best_fd('{}', FD).".format(objective['O']),
+            "get_best_fd('{}', FD).".format(objective),
             include_ns=True
             )
         selected_fds.append({
-            'O': objective['O'],
+            'O': objective,
             'FD': fd[0]['FD']
         })
     # print("Selected FDs: ", selected_fds)
@@ -159,9 +168,9 @@ def main():
         update_measured_water_visibility(pq)
         print_status(pq)
         # objs = get_objectives_in_error(pq)
-        objs = get_objectives(pq)
+        adaptable_objectives = get_adaptable_objectives(pq)
         # print("Objectives in error: ", obj_in_error)
-        selected_fds = select_fds(pq, objs)
+        selected_fds = select_fds(pq, adaptable_objectives)
         ground_fds(pq, selected_fds)
         rate.sleep()
     rospy.spin()
