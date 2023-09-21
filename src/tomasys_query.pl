@@ -17,6 +17,7 @@
       o_type_f/2,
       qa_is_type/2,
       qa_has_value/2,
+      objective_always_improve/1,
       qa_comparison_operator/2,
       qa_critical/2
     ]).
@@ -49,7 +50,11 @@ o_type_f(O, F) :- objective(O), triple(O, tomasys:'typeF', F), function(F).
 qa_is_type(QAV, QAT) :-
   qa_value(QAV), triple(QAV, tomasys:'isQAtype', QAT), qa_type(QAT).
 qa_has_value(QA, QAV) :- triple(QA, tomasys:'hasValue', QAV).
+
 % Get property
+objective_always_improve(O) :-
+  objective(O), triple(O, tomasys:'o_always_improve', 'true').
+
 qa_comparison_operator(QAT, OP) :-
   qa_type(QAT), triple(QAT, tomasys:'qa_comparison_operator', OP).
 qa_comparison_operator(QAT, '>') :-
